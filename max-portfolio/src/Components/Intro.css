@@ -1,0 +1,71 @@
+.intro{
+    position: relative;
+    box-shadow: inset 0 -40px 20px 0 #152427;
+    /* filter: drop-shadow(0 -40px 0px #ffffff); */
+    /* #152427 */
+}
+
+.intro--text{
+    animation: fadeIn 5s; 
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    padding-right: 50%;
+    z-index: 1;
+}
+
+
+@keyframes introimg {
+    from {object-position: 0% 5%;}
+    to {object-position: 0% 80%;}
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+
+.intro--name{
+    font-size: xx-large;
+    top: 25%;
+    padding-right: 50px;
+
+}
+.intro--desc, .intro--email{
+    font-size: x-large;
+    color: #B67AC2;
+}
+.intro--email{
+    top: 35%;
+    color: #7486C1;
+    padding: 16px;
+}
+.intro--email:hover{
+    color: #B67AC2;
+}
+a{
+    color: #3979AE;
+}
+
+.intro--img{
+    height: 480px;
+    animation-name: introimg;
+    animation-duration: 3s;
+    object-position: 0% 75%;
+    object-fit: cover;
+    width: 110%;
+    opacity: 0.5;
+    transition: 0.8s;
+    margin-top: -20px;
+    margin-left: -30px;
+    box-shadow: inset 0 -40px 20px 0 white;
+
+}
+
+.intro--img:hover {
+    opacity:1;
+    transform: scale(0.99);
+    transition-delay: 0.1s;
+    transition: 0.5s;
+
+}

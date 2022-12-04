@@ -1,0 +1,14 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+  } 
+.app{
+    background-color: #152427;
+    color: aliceblue;
+    font-family: 'Work Sans';
+    font-weight: 500;
+}
+body{
+  margin: 0px;
+  padding: 0px;
+}

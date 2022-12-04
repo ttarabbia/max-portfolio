@@ -1,0 +1,11 @@
+.carousel-comp{
+    margin: 12px;
+
+}
+
+.carousel-comp--img{
+    /* max-width:100%;
+    max-height:100%; */
+    width: 480px;
+
+}
