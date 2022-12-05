@@ -13,6 +13,9 @@ const CarouselComp = ({image, offset, len, idx}) => {
       }}>
       {/* <h1>{offset}</h1> */}
       <img src={image} className="carousel-comp--img"/>
+      <div className='carousel-comp--text'>
+        <p>{"Text and stuff describing the item"}</p>
+      </div>
     </div>
   )
 }

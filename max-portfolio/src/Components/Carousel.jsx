@@ -17,7 +17,7 @@ const Carousel = ({catName, images}) => {
       interval = setInterval(() => {
         setSeconds(seconds => seconds + 1);
         setOffset(offset => offset+1);
-      }, 4000);
+      }, 5000);
       return () => clearInterval(interval);
     }, [seconds])
     

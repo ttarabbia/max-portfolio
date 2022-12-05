@@ -3,7 +3,13 @@
     /* height: 500px; */
     text-align: center;
     margin-bottom: 36px;
+    animation: fadeIn 7s; 
 }
+
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
 
 .carousel--arrow{
     cursor: pointer;
