@@ -1,28 +1,46 @@
-import React from 'react'
+import React, { Suspense, useState, useRef } from 'react'
+import {Canvas} from "@react-three/fiber"
 // import circleImg from "../../assets/circle.png"
 import "./ShaderBox.css"
-import AnimationCanvas from './AnimationCanvas'
-import { Suspense, useState } from 'react'
+import Plane from './Plane'
+import vertexShader from "../../assets/vertexShader.js"
+// import fragmentShader from "../../assets/fragmentShader.js"
+// import fragmentShader2 from "../../assets/fragmentShader2.js"
 
+//For reference https://stackoverflow.com/questions/24820004/how-to-implement-a-shadertoy-shader-in-three-js
 
+const ShaderBox = ({fragmentShader, offset, len}) => {
 
-const ShaderBox = () => {
+    const [scale, setScale] = useState(.5);
+    const [speed, setSpeed] = useState(1.);
+    const vshader = useRef(vertexShader)
+    const fshader = useRef(fragmentShader)
 
-    const [speed, setSpeed] = useState(15)
-    const [color, setColor] = useState(0x00AAFF)
-    console.log(speed)
+    function mod(n, m) {
+        return ((n % m) + m) % m;
+      }
 
   return (
-    <div className='shader'>
-        <div className='shader--sliders'>
-            <input type="range" min="1" max="100" value={speed} className="slider" onChange={(e) => setSpeed(e.target.value)}/>
-            <input type="color" value={color} onChange={(e) => setColor(e.target.value)}/>
-        </div>
-        <div className='anim'>
-            <Suspense fallback={<div>Loading...</div>}>
-                <AnimationCanvas speed={speed} color={color}/>
-            </Suspense>
+    <div className="carousel-comp" style={{
+        transform: `translate(${mod(offset, len) *  -105}%)`,
+        transition: "0.5s",
+        }}>
+        <div className='shader'>
+            <div className='shader--sliders'>
+                <input type="range" min="0.1" max="20." value={scale} className="Scale" onChange={(e) => setScale(e.target.value)}/>
+                <label for="Scale">Scale</label>
+                <input type="range" min="0.1" max="20." value={speed} className="Speed" onChange={(e) => setSpeed(e.target.value)}/>
+                <label for="Speed">Speed</label>
+            </div>
+            <div className='canvas'>
+                    <Suspense fallback={null}>
+                    {/* <AnimationCanvas speed={speed} color={color}/> */}
+                        <Canvas gl={{alpha: false, logarithmicDepthBuffer: true}}>
+                            <Plane vshader={vshader} fshader={fshader} scale={scale} speed={speed}/>
+                        </Canvas>
+                    </Suspense>
 
+            </div>
         </div>
     </div>
   )
