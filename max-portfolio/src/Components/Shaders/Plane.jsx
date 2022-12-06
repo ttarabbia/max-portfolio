@@ -1,5 +1,6 @@
 import React, { useMemo, useRef } from 'react';
 import { useFrame, useThree } from "@react-three/fiber";
+import { useEffect } from 'react';
 // import {Color} from "three"
 
 const Plane = ({fshader, vshader, scale, speed}) => {
@@ -11,21 +12,30 @@ const Plane = ({fshader, vshader, scale, speed}) => {
     mesh.vshader = vshader.current;
 
     const uniforms = useMemo(() =>({
-        iTime: { value: 0.0,},
+        iTime: {value: 1.0},
         iScale: {value: scale},
         iSpeed: {value: speed}
     }), []);
 
-    useFrame((state) => {
-        const {clock} = state;
-        mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
-        mesh.current.material.uniforms.iScale.value = scale;
-        mesh.current.material.uniforms.iSpeed.value = speed;
-    });
+    useEffect(() =>{
+        mesh.current.material.uniforms.iScale = scale;
+        mesh.current.material.uniforms.iSpeed = speed;
+    },[scale, speed])
 
-    console.log(viewport)
-    console.log(useThree())
-    console.log(viewport.width)
+
+    useFrame(({clock}) => {
+        // console.log(clock)
+        // mesh.current.uniforms = 
+        //     {...mesh.current.uniforms,
+        //         iTime: {value: clock.getElapsedTime()},
+        //         iScale: {value: scale},
+        //         iSpeed: {value: speed}}
+        mesh.current.material.uniforms.iTime = clock.getElapsedTime();
+        mesh.current.rotation.y = Math.sin(clock.getElapsedTime())
+        mesh.current.material.uniforms.iScale = scale;
+        mesh.current.material.uniforms.iSpeed = speed;
+        // console.log(mesh.current.material.uniforms.iTime.value)
+    });
 
   return (
     <>

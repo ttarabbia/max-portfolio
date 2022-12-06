@@ -28,9 +28,9 @@ const ShaderBox = ({fragmentShader, offset, len}) => {
         <div className='shader'>
             <div className='shader--sliders'>
                 <input type="range" min="0.1" max="20." value={scale} className="Scale" onChange={(e) => setScale(e.target.value)}/>
-                <label for="Scale">Scale</label>
+                <label htmlFor="Scale">Scale</label>
                 <input type="range" min="0.1" max="20." value={speed} className="Speed" onChange={(e) => setSpeed(e.target.value)}/>
-                <label for="Speed">Speed</label>
+                <label htmlFor="Speed">Speed</label>
             </div>
             <div className='canvas'>
                     <Suspense fallback={null}>

@@ -5,7 +5,7 @@ uniform float iScale;
 uniform float iSpeed;
 //Sets the scale of the noise
 
-#define iScale iScale
+#define SCALE 1
 
 
 //Interpolation used when blending between cell corners
@@ -76,10 +76,11 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     
     //6 Octaves of noise
     vec3 color;
-    //color = vec3(Noise(fragCoord.xy ,20.0,scale),Noise(fragCoord.xy ,10.0,scale),Noise(fragCoord.xy ,3.0,scale));
-    color = vec3(Noise(fragCoord.xy,1.0,scale)*0.5 + Noise(fragCoord.xy,2.0,scale*2.0)*0.25 + 
-    Noise(fragCoord.xy,3.0,scale*4.0)*0.125 + Noise(fragCoord.xy,4.0,scale*8.0)*0.0625 
-    + Noise(fragCoord.xy,5.0,scale*16.0)*0.03125 + Noise(fragCoord.xy,6.0,scale*32.0)*0.015625);
+    //color = vec3(Noise(gl_FragCoord.xy ,20.0,scale),Noise(gl_FragCoord.xy ,10.0,scale),Noise(gl_FragCoord.xy ,3.0,scale));
+    color = vec3(Noise(gl_FragCoord.xy,1.0,scale)*0.5 + Noise(gl_FragCoord.xy,2.0,scale*2.0)*0.25 + 
+    Noise(gl_FragCoord.xy,3.0,scale*4.0)*0.125 + Noise(gl_FragCoord.xy,4.0,scale*8.0)*0.0625 
+    + Noise(gl_FragCoord.xy,5.0,scale*16.0)*0.03125 + Noise(gl_FragCoord.xy,6.0,scale*32.0)*0.015625);
+    
     
     fragColor = vec4(color.xyz,1.0);
 }
