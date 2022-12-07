@@ -3,7 +3,6 @@ import {Canvas} from "@react-three/fiber"
 import {Leva} from "leva"
 import "./ShaderBox.css"
 import Plane from './Plane'
-import Plane2 from './Plane2'
 import vertexShader from "../../assets/vertexShader.js"
 // import fragmentShader from "../../assets/fragmentShader.js"
 // import fragmentShader2 from "../../assets/fragmentShader2.js"
@@ -27,7 +26,7 @@ const ShaderBox = ({fragmentShader, offset, len}) => {
         transform: `translate(${mod(offset, len) *  -105}%)`,
         transition: "0.5s",
         }}>
-        <Leva titleBar={false} />
+        <Leva titleBar={{drag: false, filter: false}} collapsed/>
         <div className='shader'>
             {/* <div className='shader--sliders'>
                 <input type="range" min="0.1" max="20." value={scale} className="Scale" onChange={(e) => setScale(e.target.value)}/>
@@ -40,7 +39,6 @@ const ShaderBox = ({fragmentShader, offset, len}) => {
                     {/* <AnimationCanvas speed={speed} color={color}/> */}
                         <Canvas gl={{alpha: false, logarithmicDepthBuffer: true}}>
                             <Plane vshader={vshader} fshader={fshader}/>
-                            {/* <Plane2 scale={scale} color={color}/> */}
                         </Canvas>
                     </Suspense>
 

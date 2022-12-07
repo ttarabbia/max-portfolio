@@ -15,13 +15,7 @@ const Plane = ({fshader, vshader}) => {
 
     let {speed, scale, other1, other2, color } = useControls({
         speed: {value: 1.0, min: 0.1, max: 50.},
-                // onChange: (v) => {
-                //     mesh.current.material.uniforms.iSpeed = v;
-                // }},
         scale: {value: 0.5, min: 0.05, max: 20.},
-                // onChange: (v) =>{
-                //     mesh.current.material.uniforms.iScale = v;
-                // }},
         Other: {value: "10", min: 1, max: 32, step: 1},
         Other2: {value: "32", min: 0, max: 512, step: 16},
         color: {value: "#ff005b"}
@@ -32,6 +26,7 @@ const Plane = ({fshader, vshader}) => {
         iTime: {value: 1.0},
         iScale: {value: scale},
         iSpeed: {value: speed},
+        iColor: {value: color},
     }), []);
 
     // useEffect(() =>{
@@ -44,6 +39,7 @@ const Plane = ({fshader, vshader}) => {
         mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
         mesh.current.material.uniforms.iScale.value = scale;
         mesh.current.material.uniforms.iSpeed.value = speed;
+        mesh.current.material.uniforms.iColor.value = color;
         console.log(mesh.current.material.uniforms)
     });
 

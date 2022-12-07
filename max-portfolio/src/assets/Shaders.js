@@ -8,7 +8,7 @@ export const Shaders = [
     // my coordinate system
     // In these examples consider the value of x 
     // to go from 0 to 1.
-    float x = (gl_FragCoord.x * iScale) / 500.0 - iTime;
+    float x = (gl_FragCoord.x * iScale) / 500.0 - fract(iTime);
     vec3 color = vec3(x);
   
     gl_FragColor = vec4(color,1.0);
@@ -115,6 +115,7 @@ export const Shaders = [
   `
   uniform float iScale;
   uniform float iTime;
+  uniform float iSpeed;
   varying vec2 vUv;
 
   vec3 colorA = vec3(0.912,0.191,0.652);
@@ -123,7 +124,7 @@ export const Shaders = [
   void main() {
     vec3 color = mix(colorA, colorB, vUv.x);
 
-    gl_FragColor = vec4(fract(color+iTime),1.0);
+    gl_FragColor = vec4(fract(color+iTime*iSpeed),1.0);
   }
 
   `
