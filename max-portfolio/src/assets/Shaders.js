@@ -8,7 +8,7 @@ export const Shaders = [
     // my coordinate system
     // In these examples consider the value of x 
     // to go from 0 to 1.
-    float x = gl_FragCoord.x / 500.0 - iTime;
+    float x = (gl_FragCoord.x * iScale) / 500.0 - iTime;
     vec3 color = vec3(x);
   
     gl_FragColor = vec4(color,1.0);

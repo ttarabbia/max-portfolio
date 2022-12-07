@@ -1,40 +1,50 @@
 import React, { useMemo, useRef } from 'react';
 import { useFrame, useThree } from "@react-three/fiber";
 import { useEffect } from 'react';
+import { useControls } from 'leva';
 // import {Color} from "three"
 
-const Plane = ({fshader, vshader, scale, speed}) => {
+const Plane = ({fshader, vshader}) => {
 
+    
     const mesh = useRef();
     const {viewport} = useThree();
 
     mesh.fshader = fshader.current;
     mesh.vshader = vshader.current;
 
-    const uniforms = useMemo(() =>({
+    let {speed, scale, other1, other2, color } = useControls({
+        speed: {value: 1.0, min: 0.1, max: 50.},
+                // onChange: (v) => {
+                //     mesh.current.material.uniforms.iSpeed = v;
+                // }},
+        scale: {value: 0.5, min: 0.05, max: 20.},
+                // onChange: (v) =>{
+                //     mesh.current.material.uniforms.iScale = v;
+                // }},
+        Other: {value: "10", min: 1, max: 32, step: 1},
+        Other2: {value: "32", min: 0, max: 512, step: 16},
+        color: {value: "#ff005b"}
+      })
+
+    
+    const uniforms = useMemo(() => ({
         iTime: {value: 1.0},
         iScale: {value: scale},
-        iSpeed: {value: speed}
+        iSpeed: {value: speed},
     }), []);
 
-    useEffect(() =>{
-        mesh.current.material.uniforms.iScale = scale;
-        mesh.current.material.uniforms.iSpeed = speed;
-    },[scale, speed])
+    // useEffect(() =>{
+    //     mesh.current.material.uniforms.iScale = scale;
+    //     mesh.current.material.uniforms.iSpeed = speed;
+    // },[scale, speed])
 
 
     useFrame(({clock}) => {
-        // console.log(clock)
-        // mesh.current.uniforms = 
-        //     {...mesh.current.uniforms,
-        //         iTime: {value: clock.getElapsedTime()},
-        //         iScale: {value: scale},
-        //         iSpeed: {value: speed}}
-        mesh.current.material.uniforms.iTime = clock.getElapsedTime();
-        mesh.current.rotation.y = Math.sin(clock.getElapsedTime())
-        mesh.current.material.uniforms.iScale = scale;
-        mesh.current.material.uniforms.iSpeed = speed;
-        // console.log(mesh.current.material.uniforms.iTime.value)
+        mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
+        mesh.current.material.uniforms.iScale.value = scale;
+        mesh.current.material.uniforms.iSpeed.value = speed;
+        console.log(mesh.current.material.uniforms)
     });
 
   return (
@@ -42,6 +52,7 @@ const Plane = ({fshader, vshader, scale, speed}) => {
         <mesh ref={mesh}>
             <planeGeometry args={[viewport.width, viewport.height]}/>
             <shaderMaterial
+                attach="material"
                 fragmentShader={fshader.current}
                 vertexShader={vshader.current}
                 uniforms={uniforms}/>

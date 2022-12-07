@@ -8,7 +8,7 @@ import ContactMe from './Components/ContactMe'
 import ShaderCarousel from "./Components/Shaders/ShaderCarousel"
 import "./App.css"
 import ShaderBox from './Components/Shaders/ShaderBox'
-import fragmentShader2 from "./assets/fragmentShader2.js"
+import fragmentShader from "./assets/fragmentShader2.js"
 
 const App = () => {
 
@@ -18,7 +18,7 @@ const App = () => {
         {Object.keys(images).map((catName, i) => (
             <Carousel key={i} catName={catName} images={images[catName]}/>))} */}
         <ShaderCarousel key={"shader"} shaders={Shaders}/>
-        <ShaderBox fragmentShader={fragmentShader2} offset="0" len="1"/>
+        {/* <ShaderBox fragmentShader={fragmentShader} offset="0" len="1"/> */}
         <ContactMe/>
     </div>
   )
