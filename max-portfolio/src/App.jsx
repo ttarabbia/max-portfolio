@@ -14,9 +14,9 @@ const App = () => {
 
   return (
     <div className='app'>
-        {/* <Intro image={background}/>
+        <Intro image={background}/>
         {Object.keys(images).map((catName, i) => (
-            <Carousel key={i} catName={catName} images={images[catName]}/>))} */}
+          <Carousel key={i} catName={catName} images={images[catName]}/>))}
         <ShaderCarousel key={"shader"} shaders={Shaders}/>
         {/* <ShaderBox fragmentShader={fragmentShader} offset="0" len="1" meshRef={useRef()}/> */}
         <ContactMe/>

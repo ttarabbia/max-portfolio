@@ -1,13 +1,13 @@
 * {
     box-sizing: border-box;
     margin: 0;
-    overflow-x: hidden;
   } 
 .app{
     background-color: #152427;
     color: aliceblue;
     font-family: 'Work Sans';
     font-weight: 500;
+    overflow-x: hidden;
 }
 body{
   margin: 0px;

@@ -17,7 +17,7 @@
 
 @keyframes introimg {
     from {object-position: 0% 5%;}
-    to {object-position: 0% 80%;}
+    to {object-position: 0% 75%;}
 }
 
 @keyframes fadeIn {

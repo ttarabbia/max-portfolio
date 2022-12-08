@@ -1,5 +1,5 @@
 export const Shaders = [
-  `
+  {"shader": `
   uniform float iTime;
   uniform float iScale;
   uniform float iSpeed;
@@ -12,8 +12,15 @@ export const Shaders = [
     vec3 color = vec3(x);
   
     gl_FragColor = vec4(color,1.0);
-  }`,
-  `
+  }`, 
+  "controls": {
+    speed: {value: 1.0, min: 0.1, max: 50.},
+    scale: {value: 0.5, min: 0.05, max: 20.},
+    Other: {value: "10", min: 1, max: 32, step: 1},
+    Other2: {value: "32", min: 0, max: 512, step: 16},
+    color: {value: "#ff005b"}
+  }},
+  {"shader": `
   void main() {
     float y = gl_FragCoord.y / 500.0;
     vec3 color = vec3(sin(y * 3.0));
@@ -21,7 +28,14 @@ export const Shaders = [
     gl_FragColor = vec4(color,1.0);
   }
   `,
-  `
+  "controls" : {
+    speed: {value: 1.0, min: 0.1, max: 50.},
+    scale: {value: 0.5, min: 0.05, max: 20.},
+    Other: {value: "10", min: 1, max: 32, step: 1},
+    Other2: {value: "32", min: 0, max: 512, step: 16},
+    color: {value: "#ff005b"}
+  }},
+  {"shader": `
   uniform float iTime;
   uniform float iScale;
   uniform float iSpeed;
@@ -93,15 +107,15 @@ export const Shaders = [
   {
   
       //Coord offset animation
-      fragCoord = fragCoord + vec2(iTime*50.0*iSpeed,0.0);
+      fragCoord = fragCoord + vec2(iTime*100.0*iScale,0.0);
       float scale = iScale/100.0;
       
       //6 Octaves of noise
       vec3 color;
-      //color = vec3(Noise(gl_FragCoord.xy ,20.0,scale),Noise(gl_FragCoord.xy ,10.0,scale),Noise(gl_FragCoord.xy ,3.0,scale));
-      color = vec3(Noise(gl_FragCoord.xy,1.0,scale)*0.5 + Noise(gl_FragCoord.xy,2.0,scale*2.0)*0.25 + 
-      Noise(gl_FragCoord.xy,3.0,scale*4.0)*0.125 + Noise(gl_FragCoord.xy,4.0,scale*8.0)*0.0625 
-      + Noise(gl_FragCoord.xy,5.0,scale*16.0)*0.03125 + Noise(gl_FragCoord.xy,6.0,scale*32.0)*0.015625);
+      //color = vec3(Noise(fragCoord.xy ,20.0,scale),Noise(fragCoord.xy ,10.0,scale),Noise(fragCoord.xy ,3.0,scale));
+      color = vec3(Noise(fragCoord.xy,1.0,scale)*0.5 + Noise(fragCoord.xy,2.0,scale*2.0)*0.25 + 
+      Noise(fragCoord.xy,3.0,scale*4.0)*0.125 + Noise(fragCoord.xy,4.0,scale*8.0)*0.0625 
+      + Noise(fragCoord.xy,5.0,scale*16.0)*0.03125 + Noise(fragCoord.xy,6.0,scale*32.0)*0.015625);
       
       
       fragColor = vec4(color.xyz,1.0);
@@ -111,7 +125,15 @@ export const Shaders = [
       mainImage(gl_FragColor, gl_FragCoord.xy);
   }
    
-  `,
+  `,  
+  "controls" : {
+    speed: {value: 1.0, min: 0.1, max: 50.},
+    scale: {value: 0.5, min: 0.05, max: 20.},
+    Other: {value: "10", min: 1, max: 32, step: 1},
+    Other2: {value: "32", min: 0, max: 512, step: 16},
+    color: {value: "#ff005b"}
+  }},
+  {"shader" :
   `
   uniform float iScale;
   uniform float iTime;
@@ -127,7 +149,14 @@ export const Shaders = [
     gl_FragColor = vec4(fract(color+iTime*iSpeed),1.0);
   }
 
-  `
+  `,
+  "controls" : {
+    speed: {value: 1.0, min: 0.1, max: 50.},
+    scale: {value: 0.5, min: 0.05, max: 20.},
+    Other: {value: "10", min: 1, max: 32, step: 1},
+    Other2: {value: "32", min: 0, max: 512, step: 16},
+    color: {value: "#ff005b"}
+  }}
 
 ]
   

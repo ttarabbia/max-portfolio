@@ -1,6 +1,6 @@
-import React, { Suspense, useState, useRef } from 'react'
+import React, { Suspense, useEffect, useRef } from 'react'
 import {Canvas} from "@react-three/fiber"
-import {Leva} from "leva"
+import {Leva, useCreateStore, useControls} from "leva"
 import "./ShaderBox.css"
 import Plane from './Plane'
 import vertexShader from "../../assets/vertexShader.js"
@@ -9,7 +9,7 @@ import vertexShader from "../../assets/vertexShader.js"
 
 //For reference https://stackoverflow.com/questions/24820004/how-to-implement-a-shadertoy-shader-in-three-js
 
-const ShaderBox = ({fragmentShader, offset, len}) => {
+const ShaderBox = ({fragmentShader, offset, len, controls}) => {
 
     const vshader = useRef(vertexShader)
     const fshader = useRef(fragmentShader)
@@ -18,7 +18,13 @@ const ShaderBox = ({fragmentShader, offset, len}) => {
         return ((n % m) + m) % m;
       }
 
+      console.log(controls)
 
+      const localStore = useCreateStore()
+      const cntrl = useControls(controls, {store: localStore})
+
+    
+  
 
 
   return (
@@ -26,7 +32,7 @@ const ShaderBox = ({fragmentShader, offset, len}) => {
         transform: `translate(${mod(offset, len) *  -105}%)`,
         transition: "0.5s",
         }}>
-        <Leva titleBar={{drag: false, filter: false}} collapsed/>
+        <Leva titleBar={{drag: false, filter: false}} collapsed store={localStore}/>
         <div className='shader'>
             {/* <div className='shader--sliders'>
                 <input type="range" min="0.1" max="20." value={scale} className="Scale" onChange={(e) => setScale(e.target.value)}/>
@@ -35,13 +41,11 @@ const ShaderBox = ({fragmentShader, offset, len}) => {
                 <label htmlFor="Speed">Speed</label>
             </div> */}
             <div className='canvas'>
-                    <Suspense fallback={null}>
-                    {/* <AnimationCanvas speed={speed} color={color}/> */}
+                    <Suspense fallback={<div>Loading....</div>}>
                         <Canvas gl={{alpha: false, logarithmicDepthBuffer: true}}>
-                            <Plane vshader={vshader} fshader={fshader}/>
+                            <Plane vshader={vshader} fshader={fshader} controls={cntrl}/>
                         </Canvas>
                     </Suspense>
-
             </div>
         </div>
     </div>

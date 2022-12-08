@@ -1,15 +1,16 @@
-import React from 'react'
-import { useState, useEffect} from 'react'
+
+import React, { useState, useEffect} from 'react'
 import ShaderBox from './ShaderBox'
 
 
 const Carousel = ({shaders}) => {
 
     const [offset, setOffset] = useState(0)
-    const [seconds, setSeconds] = useState(0)
 
-    const len = shaders.length-1
-    console.log(offset)
+    const len = shaders.length
+    for (let i = 0; i < shaders.length; i++){
+      console.log(shaders[i]["controls"])
+    }
 
 
   return (
@@ -20,7 +21,7 @@ const Carousel = ({shaders}) => {
 
             <p className="carousel--next-arrow carousel--arrow" onClick={() => setOffset(offset => offset+1)}>&#10095;</p>
             <div className='carousel--images'>
-                {shaders?.map((shader, idx) => <ShaderBox key={idx} fragmentShader={shader} offset={offset} idx={idx} len={len}/>)}      
+                {shaders?.map((shader, idx) => <ShaderBox key={idx} fragmentShader={shader["shader"]} offset={offset} len={len-1} controls={shader["controls"]}/>)}      
             </div>
         </div>
     </>

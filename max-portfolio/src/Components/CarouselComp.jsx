@@ -1,7 +1,7 @@
 import React from 'react'
 import "./CarouselComp.css"
 
-const CarouselComp = ({image, offset, len, idx}) => {
+const CarouselComp = ({image, offset, len, idx, text}) => {
   function mod(n, m) {
     return ((n % m) + m) % m;
   }
@@ -14,7 +14,7 @@ const CarouselComp = ({image, offset, len, idx}) => {
       {/* <h1>{offset}</h1> */}
       <img src={image} className="carousel-comp--img"/>
       <div className='carousel-comp--text'>
-        <p>{"Text and stuff describing the item"}</p>
+        <p>{text}</p>
       </div>
     </div>
   )
