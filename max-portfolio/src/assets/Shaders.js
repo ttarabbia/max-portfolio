@@ -21,9 +21,10 @@ export const Shaders = [
     color: {value: "#ff005b"}
   }},
   {"shader": `
+  uniform float iTime;
   void main() {
     float y = gl_FragCoord.y / 500.0;
-    vec3 color = vec3(sin(y * 3.0));
+    vec3 color = vec3(sin(y * 3.0 + iTime));
       
     gl_FragColor = vec4(color,1.0);
   }
