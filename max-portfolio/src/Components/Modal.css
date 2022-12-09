@@ -28,8 +28,8 @@
     transition: 0.4s;
 }
 .modal--container{
-    width: 85vw;
-    height: 85vh;
+    width: 90vw;
+    height: 90vh;
     opacity: 100%;
     z-index: 2;
     object-fit: cover;
@@ -39,7 +39,7 @@
 }
 
 .modal--inner-container{
-    border: 12px white solid;
+    border: 8px white solid;
     border-radius: 12px;
 }
 .modal--img{

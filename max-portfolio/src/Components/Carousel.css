@@ -25,11 +25,12 @@
     z-index: 2;
     margin: 120px 4px;
     padding: 120px 16px;
-    border: solid rgba(255, 255, 255, 0.9) 2px;
+    border: solid rgba(255, 255, 255, 0.37) 2px;
 }
 
 .carousel--arrow:hover{
     background-color: rgba(0.1, 0.1, 0.1, 0.5);
+    border: solid rgba(255, 255, 255, 0.849) 2px;
     transition: 0.4s;
 
     /* border-radius: 3px 0 0 3px; */
