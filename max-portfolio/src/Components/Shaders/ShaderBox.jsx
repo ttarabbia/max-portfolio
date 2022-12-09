@@ -4,8 +4,7 @@ import {Leva, useCreateStore, useControls} from "leva"
 import "./ShaderBox.css"
 import Plane from './Plane'
 import vertexShader from "../../assets/vertexShader.js"
-// import fragmentShader from "../../assets/fragmentShader.js"
-// import fragmentShader2 from "../../assets/fragmentShader2.js"
+
 
 //For reference https://stackoverflow.com/questions/24820004/how-to-implement-a-shadertoy-shader-in-three-js
 

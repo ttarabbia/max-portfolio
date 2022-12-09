@@ -1,7 +1,7 @@
 import React from 'react'
 import "./CarouselComp.css"
 
-const CarouselComp = ({image, offset, len, idx, text}) => {
+const CarouselComp = ({image, offset, len, idx, text, setModal}) => {
   function mod(n, m) {
     return ((n % m) + m) % m;
   }
@@ -13,7 +13,7 @@ const CarouselComp = ({image, offset, len, idx, text}) => {
       }}>
       {/* <h1>{offset}</h1> */}
       <img src={image} className="carousel-comp--img"/>
-      <div className='carousel-comp--text'>
+      <div className='carousel-comp--text' onClick={() => setModal(image)}>
         <p>{text}</p>
       </div>
     </div>

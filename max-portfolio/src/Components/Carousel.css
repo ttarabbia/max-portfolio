@@ -25,7 +25,7 @@
     z-index: 2;
     margin: 120px 4px;
     padding: 120px 16px;
-    border: solid rgba(255, 255, 255, 0.2) 2px;
+    border: solid rgba(255, 255, 255, 0.9) 2px;
 }
 
 .carousel--arrow:hover{

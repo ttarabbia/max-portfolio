@@ -3,7 +3,8 @@
     margin: 0;
   } 
 .app{
-    background-color: #152427;
+
+    background: linear-gradient(hsl(195, 25%, 0%), #152427);
     color: aliceblue;
     font-family: 'Work Sans';
     font-weight: 500;

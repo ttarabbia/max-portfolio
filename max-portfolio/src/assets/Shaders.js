@@ -263,7 +263,7 @@ export const Shaders = [
   {
   
       //Coord offset animation
-      fragCoord = fragCoord + vec2(iTime*100.0*iScale,0.0);
+      fragCoord = fragCoord + vec2(iTime*100.0*iSpeed,0.0);
       float scale = iScale/100.0;
       
       //6 Octaves of noise
