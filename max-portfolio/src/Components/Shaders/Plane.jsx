@@ -1,5 +1,6 @@
-import React, { useMemo, useRef } from 'react';
+import React, { useMemo, useRef, useCallback} from 'react';
 import { useFrame, useThree } from "@react-three/fiber";
+import { Vector2 } from 'three';
 // import {Color} from "three"
 
 const Plane = ({fshader, vshader, controls}) => {
@@ -11,23 +12,32 @@ const Plane = ({fshader, vshader, controls}) => {
     mesh.fshader = fshader.current;
     mesh.vshader = vshader.current;
 
-    let {speed, scale, other1, other2, color } = controls;
+    let {iSpeed, iScale, other1, other2, iColor } = controls;
 
+    const {height, width, factor} = viewport
+
+      
     
     const uniforms = useMemo(() => ({
         iTime: {value: 1.0},
-        iScale: {value: scale},
-        iSpeed: {value: speed},
-        iColor: {value: color},
+        iScale: {value: iScale},
+        iSpeed: {value: iSpeed},
+        iColor: {value: iColor},
+        iResolution : {value: new Vector2(width, height)},
+        iMouse : {value: new Vector2(0,0)}
     }), []);
 
 
-    useFrame(({clock}) => {
+    useFrame(({clock, mouse}) => {
         mesh.current.material.uniforms.iTime.value = clock.getElapsedTime();
-        mesh.current.material.uniforms.iScale.value = scale;
-        mesh.current.material.uniforms.iSpeed.value = speed;
-        mesh.current.material.uniforms.iColor.value = color;
-        // console.log(mesh.current.material.uniforms)
+        mesh.current.material.uniforms.iScale.value = iScale;
+        mesh.current.material.uniforms.iSpeed.value = iSpeed;
+        mesh.current.material.uniforms.iColor.value = iColor;
+
+        mesh.current.material.uniforms.iMouse.value = new Vector2(mouse?.x*width*factor, mouse?.y*height*factor);
+        mesh.current.material.uniforms.iResolution.value  = new Vector2(width*factor, height*factor);
+        // console.log(mesh.current.material.uniforms.iMouse)
+        console.log(mesh.current.material.uniforms)
     });
 
   return (

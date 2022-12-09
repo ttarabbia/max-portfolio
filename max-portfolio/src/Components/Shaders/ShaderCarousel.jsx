@@ -21,7 +21,8 @@ const Carousel = ({shaders}) => {
 
             <p className="carousel--next-arrow carousel--arrow" onClick={() => setOffset(offset => offset+1)}>&#10095;</p>
             <div className='carousel--images'>
-                {shaders?.map((shader, idx) => <ShaderBox key={idx} fragmentShader={shader["shader"]} offset={offset} len={len-1} controls={shader["controls"]}/>)}      
+                {shaders?.map((shader, idx) => <ShaderBox key={idx} fragmentShader={shader["shader"]} offset={offset} len={len-1} controls={shader["controls"]}/>)}
+                {/* <ShaderBox key={1} fragmentShader={shaders[1]["shader"]} offset={offset} len={0} controls={shaders[1]["controls"]} /> */}
             </div>
         </div>
     </>
