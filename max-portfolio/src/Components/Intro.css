@@ -48,7 +48,7 @@ a{
 }
 
 .intro--img{
-    height: 480px;
+    height: 720px;
     animation-name: introimg;
     animation-duration: 3s;
     object-position: 0% 75%;

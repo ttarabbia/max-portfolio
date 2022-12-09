@@ -16,15 +16,15 @@ import "./App.css"
 const App = () => {
 
 
-  const [modal, setModal] = useState("https://media.journoportfolio.com/users/164251/images/ec8f8941-45b7-42eb-a178-2227907360ab.jpg");
+  const [modal, setModal] = useState(null);
 
 
   return (
     <div className='app'>
-        {/* <Intro image={background}/>*/}
+        <Intro image={background}/>
         {Object.keys(images).map((catName, i) => (
           <Carousel key={i} catName={catName} images={images[catName]} setModal={setModal}/>))}
-        {/* <ShaderCarousel key={"shader"} shaders={Shaders} modalState={modalState}/> */}
+        <ShaderCarousel key={"shader"} shaders={Shaders} setModal={setModal}/>
         {modal ? <Modal img={modal} setModal={setModal}/> : null}
         <ContactMe/>
     </div>
