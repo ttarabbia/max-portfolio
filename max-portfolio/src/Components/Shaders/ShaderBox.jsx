@@ -21,7 +21,6 @@ const ShaderBox = ({fragmentShader, offset, len, controls, setModal}) => {
 
       const setAnimate = () => {
         animate.current = !animate.current;
-        console.log(animate.current)
     }
       
 

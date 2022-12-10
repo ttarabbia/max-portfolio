@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {PerformanceMonitor } from "@react-three/drei"
 
 import Intro from './Components/Intro'
 import Carousel from './Components/Carousel'

@@ -1,6 +1,7 @@
 import React, { useMemo, useRef, useCallback} from 'react';
 import { useControls } from 'leva';
 import { useFrame, useThree } from "@react-three/fiber";
+import {Stats} from "@react-three/drei"
 import { Vector2 } from 'three';
 // import {Color} from "three"
 
@@ -56,6 +57,7 @@ const Plane = ({fshader, vshader, controls, store, animate}) => {
                 vertexShader={vshader.current}
                 uniforms={uniforms}/>
         </mesh>
+        <Stats />
     </>
   )
 };
