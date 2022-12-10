@@ -3,3 +3,10 @@
     width: 480px;
     height: 480px;
 }
+
+@media screen and (max-width: 1080px){
+    .canvas{
+        width: 240px;
+        height: 240px;
+    }
+}

@@ -7,10 +7,11 @@ const CarouselComp = ({image, offset, len, idx, text, setModal}) => {
   }
 
   return (
-    <div className="carousel-comp" style={{
+    <div className="carousel-comp" 
+      style={{
       transform: `translate(${mod(offset, len) *  -105}%)`,
-      transition: "0.5s",
-      }}>
+      transition: "0.5s",}}
+      >
       {/* <h1>{offset}</h1> */}
       <img src={image} className="carousel-comp--img"/>
       <div className='carousel-comp--text' onClick={() => setModal(image)}>

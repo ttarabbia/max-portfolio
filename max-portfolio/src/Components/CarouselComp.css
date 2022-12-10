@@ -3,6 +3,8 @@
     position: relative;
     width: 480px;
     height: 480px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
 }
 
 .carousel-comp--img{
@@ -10,6 +12,22 @@
     height:100%; */
     width: 480px;
 }
+
+
+@media screen and (max-width: 1080px){
+    .carousel-comp{
+        margin: 6px;
+        position: relative;
+        width: 240px;
+        height: 240px;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+    }
+    .carousel-comp--img{
+        width: 240px;
+    }
+}
+
 
 .carousel-comp--text{
     position: absolute;

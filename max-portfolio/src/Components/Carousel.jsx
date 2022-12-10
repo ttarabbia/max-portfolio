@@ -14,14 +14,13 @@ const Carousel = ({catName, images, setModal}) => {
     const [seconds, setSeconds] = useState(0)
 
     const len = images.length-1
-    console.log(offset)
 
     useEffect(() => {
       let interval = null;
       interval = setInterval(() => {
         setSeconds(seconds => seconds + 1);
         setOffset(offset => offset+1);
-      }, 5000);
+      }, 6000);
       return () => clearInterval(interval);
     }, [seconds])
     

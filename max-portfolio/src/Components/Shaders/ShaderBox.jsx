@@ -8,7 +8,7 @@ import vertexShader from "../../assets/vertexShader.js"
 
 //For reference https://stackoverflow.com/questions/24820004/how-to-implement-a-shadertoy-shader-in-three-js
 
-const ShaderBox = ({fragmentShader, offset, len, controls}) => {
+const ShaderBox = ({fragmentShader, offset, len, controls, setModal}) => {
 
     const vshader = useRef(vertexShader)
     const fshader = useRef(fragmentShader)
@@ -17,12 +17,21 @@ const ShaderBox = ({fragmentShader, offset, len, controls}) => {
         return ((n % m) + m) % m;
       }
 
-      console.log(controls)
+      const animate = useRef(false)
 
-      const localStore = useCreateStore()
-      const cntrl = useControls(controls, {store: localStore})
+      const setAnimate = () => {
+        animate.current = !animate.current;
+        console.log(animate.current)
+    }
+      
 
-    
+
+    const localStore = useCreateStore()
+    // const cntrl = useControls(controls, {store: localStore})
+
+    const handleClick = (e) => {
+        setModal([vshader, fshader, controls, localStore]);
+    }
   
 
 
@@ -31,18 +40,12 @@ const ShaderBox = ({fragmentShader, offset, len, controls}) => {
         transform: `translate(${mod(offset, len) *  -105}%)`,
         transition: "0.5s",
         }}>
-        <Leva titleBar={{drag: false, filter: false}} collapsed store={localStore}/>
+        {/* <Leva titleBar={{drag: false, filter: false}} collapsed store={localStore}/> */}
         <div className='shader'>
-            {/* <div className='shader--sliders'>
-                <input type="range" min="0.1" max="20." value={scale} className="Scale" onChange={(e) => setScale(e.target.value)}/>
-                <label htmlFor="Scale">Scale</label>
-                <input type="range" min="0.1" max="20." value={speed} className="Speed" onChange={(e) => setSpeed(e.target.value)}/>
-                <label htmlFor="Speed">Speed</label>
-            </div> */}
-            <div className='canvas'>
+            <div onClick={(e) => handleClick(e)} className='canvas' onMouseEnter={setAnimate} onMouseLeave={setAnimate}>
                     <Suspense fallback={<div>Loading....</div>}>
                         <Canvas gl={{alpha: false, logarithmicDepthBuffer: true}}>
-                            <Plane vshader={vshader} fshader={fshader} controls={cntrl}/>
+                            <Plane vshader={vshader} fshader={fshader} controls={controls} store={localStore} animate={animate}/>
                         </Canvas>
                     </Suspense>
             </div>

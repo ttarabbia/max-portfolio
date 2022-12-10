@@ -22,6 +22,16 @@
     color: white;
     font-weight: bolder;
     z-index: 3;
+
+}
+
+@media screen and (max-width: 1080px){
+    .modal--exit{
+        font-size: 20px;
+        padding: 12px;
+        margin: 12px;
+    }
+
 }
 .modal--exit:hover{
     background-color: rgb(167, 167, 167);
@@ -34,15 +44,16 @@
     z-index: 2;
     object-fit: cover;
     transition: 0.4s;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center; */
 }
 
 .modal--inner-container{
-    border: 8px white solid;
-    border-radius: 12px;
+    
 }
 .modal--img{
     max-height: 100%;
     max-width: 100%;
+    border: 8px white solid;
+    border-radius: 12px;
 }
